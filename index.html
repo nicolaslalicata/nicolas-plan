@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NICO — Plan Atlético Personal</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f0e8;
+    --cream: #ede8dc;
+    --gold: #c8a96e;
+    --gold-dark: #9a7a45;
+    --red: #c23b2a;
+    --gray: #2a2a2a;
+    --gray-mid: #444;
+    --gray-light: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+    padding: 0 6vw;
+    background: linear-gradient(160deg, #0a0a0a 0%, #111 60%, #1a1208 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(200,169,110,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(194,59,42,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(200,169,110,0.2);
+    position: relative;
+    z-index: 2;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+  }
+
+  .hero-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gray-light);
+    letter-spacing: 0.15em;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .hero-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    padding: 4rem 0;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 14vw, 13rem);
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+
+  .hero-title span {
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-subtitle {
+    margin-top: 2.5rem;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--gray-light);
+    max-width: 500px;
+    line-height: 1.7;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(200,169,110,0.15);
+    position: relative;
+    z-index: 2;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1;
+    color: var(--white);
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gray-light);
+    text-transform: uppercase;
+  }
+
+  .stat-value .unit {
+    font-size: 1rem;
+    color: var(--gold);
+  }
+
+  /* ─── NAV PILLS ─── */
+  .nav-pills {
+    display: flex;
+    gap: 0.5rem;
+    padding: 3rem 6vw;
+    background: var(--black);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    overflow-x: auto;
+  }
+
+  .nav-pills a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--gray-light);
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--gray);
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .nav-pills a:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* ─── SECTION BASE ─── */
+  section {
+    padding: 6rem 6vw;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 3rem;
+  }
+
+  /* ─── BODY STATS ─── */
+  #stats {
+    background: var(--black);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: rgba(200,169,110,0.1);
+    border: 1px solid rgba(200,169,110,0.1);
+  }
+
+  .stat-card {
+    background: var(--black);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .stat-card:hover { background: #111; }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .stat-card:hover::before { opacity: 1; }
+
+  .sc-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--gray-light);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .sc-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--white);
+  }
+
+  .sc-unit {
+    font-size: 1rem;
+    color: var(--gold);
+  }
+
+  .sc-note {
+    margin-top: 0.5rem;
+    font-size: 0.72rem;
+    color: var(--gray-light);
+    font-style: italic;
+  }
+
+  .sc-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+
+  .badge-good { background: rgba(100,200,100,0.1); color: #6dc56d; border: 1px solid rgba(100,200,100,0.2); }
+  .badge-target { background: rgba(200,169,110,0.1); color: var(--gold); border: 1px solid rgba(200,169,110,0.2); }
+  .badge-alert { background: rgba(194,59,42,0.1); color: var(--red); border: 1px solid rgba(194,59,42,0.2); }
+
+  /* ─── NUTRITION ─── */
+  #nutrition {
+    background: #0d0d0d;
+  }
+
+  .nutrition-intro {
+    max-width: 700px;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--gray-light);
+    margin-bottom: 3rem;
+  }
+
+  .macro-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .macro-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    width: 160px;
+    flex-shrink: 0;
+  }
+
+  .macro-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .macro-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  .macro-info {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gray-light);
+    text-align: right;
+    width: 120px;
+    flex-shrink: 0;
+    line-height: 1.6;
+  }
+
+  /* ─── WEEKLY MEALS ─── */
+  .meals-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.04);
+    margin-top: 2rem;
+  }
+
+  .day-card {
+    background: #0a0a0a;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .day-header {
+    background: var(--gray);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .day-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+  }
+
+  .day-type {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--gray-light);
+    text-transform: uppercase;
+  }
+
+  .meal-block {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .meal-block:last-child { border-bottom: none; }
+
+  .meal-time-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .meal-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    background: rgba(200,169,110,0.08);
+    border: 1px solid rgba(200,169,110,0.15);
+    flex-shrink: 0;
+  }
+
+  .meal-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .meal-time {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--gray-light);
+    margin-left: auto;
+  }
+
+  .meal-content {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: rgba(245,240,232,0.75);
+  }
+
+  .meal-content strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ─── WORKOUT SECTION ─── */
+  #routine {
+    background: var(--black);
+  }
+
+  .week-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+  }
+
+  .week-tab {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid var(--gray);
+    color: var(--gray-light);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    background: none;
+  }
+
+  .week-tab.active, .week-tab:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(200,169,110,0.05);
+  }
+
+  .week-panel { display: none; }
+  .week-panel.active { display: block; }
+
+  .workout-days-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .workout-day {
+    background: #080808;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .wd-header {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .wd-day-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    color: rgba(200,169,110,0.15);
+  }
+
+  .wd-info { flex: 1; }
+
+  .wd-dayname {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .wd-focus {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  .wd-duration {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--gray-light);
+    background: rgba(255,255,255,0.04);
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    display: inline-block;
+  }
+
+  .wd-body { padding: 1.5rem; }
+
+  .phase {
+    margin-bottom: 1.5rem;
+  }
+
+  .phase-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(200,169,110,0.15);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .exercise {
+    display: flex;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    align-items: flex-start;
+  }
+
+  .exercise:last-child { border-bottom: none; }
+
+  .ex-bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.4;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .ex-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--white);
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  .ex-note {
+    font-size: 0.7rem;
+    color: var(--gray-light);
+    font-style: italic;
+    margin-top: 0.1rem;
+  }
+
+  .ex-params {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--gold);
+    white-space: nowrap;
+    text-align: right;
+    flex-shrink: 0;
+    line-height: 1.6;
+  }
+
+  .rest-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+    flex-direction: column;
+    gap: 0.75rem;
+    color: var(--gray-light);
+    background: #080808;
+  }
+
+  .rest-day .rest-icon { font-size: 2rem; opacity: 0.3; }
+  .rest-day .rest-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: rgba(255,255,255,0.1);
+  }
+
+  .rest-day .rest-desc {
+    font-size: 0.78rem;
+    color: var(--gray-light);
+    max-width: 200px;
+    line-height: 1.6;
+  }
+
+  /* ─── TIPS ─── */
+  #tips {
+    background: #0d0d0d;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .tip-card {
+    background: #0a0a0a;
+    padding: 2rem;
+    border-top: 3px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .tip-card:hover { border-color: var(--gold); }
+
+  .tip-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tip-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .tip-body {
+    font-size: 0.82rem;
+    color: var(--gray-light);
+    line-height: 1.7;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 3rem 6vw;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer .logo { font-size: 1rem; }
+
+  footer p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--gray-light);
+    letter-spacing: 0.1em;
+    line-height: 1.8;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+  .hero-title   { animation: fadeUp 0.7s 0.1s ease both; }
+  .hero-subtitle { animation: fadeUp 0.7s 0.2s ease both; }
+  .hero-stats   { animation: fadeUp 0.7s 0.3s ease both; }
+
+  /* ─── MEAL ACCORDION (mobile) ─── */
+  .meals-tabs {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    flex-wrap: wrap;
+  }
+
+  .meal-tab {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--gray);
+    color: var(--gray-light);
+    cursor: pointer;
+    background: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .meal-tab.active, .meal-tab:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(200,169,110,0.05);
+  }
+
+  .day-panel { display: none; }
+  .day-panel.active { display: block; }
+
+  /* ─── PRINT / PDF ─── */
+  .print-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 0.9rem 1.6rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    box-shadow: 0 4px 24px rgba(200,169,110,0.35);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .print-btn:hover {
+    background: var(--white);
+    box-shadow: 0 6px 32px rgba(200,169,110,0.5);
+    transform: translateY(-2px);
+  }
+
+  @media print {
+    .print-btn, .nav-pills { display: none !important; }
+    body { background: #fff !important; color: #000 !important; }
+    .hero { min-height: auto; padding: 2rem; background: #111 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    section { padding: 2rem; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .week-panel { display: block !important; }
+    .day-panel { display: block !important; }
+    .workout-days-grid { grid-template-columns: 1fr 1fr !important; }
+    .meals-container { grid-template-columns: 1fr !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .week-tabs, .meals-tabs { display: none !important; }
+    .week-panel + .week-panel { margin-top: 2rem; border-top: 2px solid #333; padding-top: 2rem; }
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 2px; }
+
+  /* ─── PROGRESS RINGS ─── */
+  .ring-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
+  }
+
+  .ring-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .ring-item svg { transform: rotate(-90deg); }
+
+  .ring-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    text-align: center;
+  }
+
+  .ring-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+
+  .nutrition-note {
+    background: rgba(200,169,110,0.04);
+    border: 1px solid rgba(200,169,110,0.12);
+    border-left: 3px solid var(--gold);
+    padding: 1.2rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 0.82rem;
+    color: var(--gray-light);
+    line-height: 1.7;
+  }
+
+  .nutrition-note strong { color: var(--white); }
+
+  /* ─── WEEKLY STRUCTURE ─── */
+  .week-structure {
+    display: flex;
+    gap: 4px;
+    margin: 2rem 0 3rem;
+  }
+
+  .ws-day {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .ws-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.1em;
+    color: var(--gray-light);
+    text-transform: uppercase;
+  }
+
+  .ws-bar {
+    width: 100%;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.6rem 0.3rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    rotate: 180deg;
+    min-height: 80px;
+  }
+
+  .ws-train { background: rgba(200,169,110,0.12); color: var(--gold); border: 1px solid rgba(200,169,110,0.2); }
+  .ws-func { background: rgba(100,150,255,0.08); color: #8ab4f8; border: 1px solid rgba(100,150,255,0.15); }
+  .ws-rest { background: rgba(255,255,255,0.03); color: var(--gray-light); border: 1px solid rgba(255,255,255,0.05); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="logo">NL — ATHLETIC PLAN</div>
+    <div class="hero-meta">
+      NICOLAS LALICATA<br>
+      PLAN DIC 2025 — EDICIÓN PERSONAL<br>
+      LIC. SABRINA GODDARD · ISAK NIV.3
+    </div>
+  </div>
+
+  <div class="hero-main">
+    <div class="hero-eyebrow">Tu plan personalizado · Definición atlética</div>
+    <h1 class="hero-title">
+      DESAFIO<br>
+      <span>TRIMESTRAL.</span>
+    </h1>
+    <p class="hero-subtitle">
+      Plan de nutrición y entrenamiento diseñado en base a tus mediciones antropométricas. Objetivo: reducir 5 kg de masa adiposa manteniendo tu excelente perfil muscular. Meta de peso: 97-98 kg.
+    </p>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-value">103<span class="unit">kg</span></div>
+      <div class="stat-label">Peso actual</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">184<span class="unit">cm</span></div>
+      <div class="stat-label">Talla</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">55.4<span class="unit">kg</span></div>
+      <div class="stat-label">Masa muscular</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">4069<span class="unit">kcal</span></div>
+      <div class="stat-label">GET estimado</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">97<span class="unit">kg</span></div>
+      <div class="stat-label">Peso objetivo</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ NAV -->
+<nav class="nav-pills">
+  <a href="#stats">Composición</a>
+  <a href="#nutrition">Nutrición</a>
+  <a href="#meals">Menú Semanal</a>
+  <a href="#routine">Rutina Mensual</a>
+  <a href="#tips">Claves</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════ STATS -->
+<section id="stats">
+  <div class="section-label">Evaluación Corporal · Jul 2025</div>
+  <h2 class="section-title">TU COMPOSICIÓN</h2>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="sc-label">Masa Adiposa</div>
+      <div class="sc-value">21.77<span class="sc-unit">kg</span></div>
+      <div class="sc-note">21% del peso total</div>
+      <span class="sc-badge badge-target">↓ Meta: −5kg</span>
+    </div>
+    <div class="stat-card">
+      <div class="sc-label">Masa Muscular</div>
+      <div class="sc-value">55.36<span class="sc-unit">kg</span></div>
+      <div class="sc-note">54% del peso total</div>
+      <span class="sc-badge badge-good">Perfil óptimo</span>
+    </div>
+    <div class="stat-card">
+      <div class="sc-label">Masa Ósea</div>
+      <div class="sc-value">10.56<span class="sc-unit">kg</span></div>
+      <div class="sc-note">10% del peso total</div>
+      <span class="sc-badge badge-good">Saludable</span>
+    </div>
+    <div class="stat-card">
+      <div class="sc-label">Índice M/O</div>
+      <div class="sc-value">5.27</div>
+      <div class="sc-note">5.27 kg músculo / kg hueso</div>
+      <span class="sc-badge badge-good">Excelente &gt;4.5</span>
+    </div>
+    <div class="stat-card">
+      <div class="sc-label">Índice A/M</div>
+      <div class="sc-value">0.39</div>
+      <div class="sc-note">kg grasa / kg músculo</div>
+      <span class="sc-badge badge-good">Excelente &lt;0.4</span>
+    </div>
+    <div class="stat-card">
+      <div class="sc-label">Suma 6 Pliegues</div>
+      <div class="sc-value">77.3<span class="sc-unit">mm</span></div>
+      <div class="sc-note">Ideal &lt;50mm (hombre)</div>
+      <span class="sc-badge badge-target">Reducir ~27mm</span>
+    </div>
+    <div class="stat-card">
+      <div class="sc-label">Cintura</div>
+      <div class="sc-value">96.8<span class="sc-unit">cm</span></div>
+      <div class="sc-note">Riesgo CV &gt;102cm</div>
+      <span class="sc-badge badge-good">Dentro del rango</span>
+    </div>
+    <div class="stat-card">
+      <div class="sc-label">Metabolismo Basal</div>
+      <div class="sc-value">1937<span class="sc-unit">kcal</span></div>
+      <div class="sc-note">F.Actividad: 2.1 (Intensa)</div>
+      <span class="sc-badge badge-target">GET: 4069 kcal</span>
+    </div>
+  </div>
+
+  <div class="ring-container" style="margin-top:3rem;">
+    <div class="ring-item">
+      <svg width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="8"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#c23b2a" stroke-width="8"
+          stroke-dasharray="251.3" stroke-dashoffset="198" stroke-linecap="round"/>
+        <text x="50" y="54" text-anchor="middle" fill="#f5f0e8" font-family="Bebas Neue" font-size="18" transform="rotate(90,50,50)">21%</text>
+      </svg>
+      <div class="ring-label">Adiposa</div>
+    </div>
+    <div class="ring-item">
+      <svg width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="8"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#c8a96e" stroke-width="8"
+          stroke-dasharray="251.3" stroke-dashoffset="116" stroke-linecap="round"/>
+        <text x="50" y="54" text-anchor="middle" fill="#f5f0e8" font-family="Bebas Neue" font-size="18" transform="rotate(90,50,50)">54%</text>
+      </svg>
+      <div class="ring-label">Muscular</div>
+    </div>
+    <div class="ring-item">
+      <svg width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="8"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#6dc56d" stroke-width="8"
+          stroke-dasharray="251.3" stroke-dashoffset="225" stroke-linecap="round"/>
+        <text x="50" y="54" text-anchor="middle" fill="#f5f0e8" font-family="Bebas Neue" font-size="18" transform="rotate(90,50,50)">10%</text>
+      </svg>
+      <div class="ring-label">Ósea</div>
+    </div>
+    <div class="ring-item">
+      <svg width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="8"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#8ab4f8" stroke-width="8"
+          stroke-dasharray="251.3" stroke-dashoffset="224" stroke-linecap="round"/>
+        <text x="50" y="54" text-anchor="middle" fill="#f5f0e8" font-family="Bebas Neue" font-size="18" transform="rotate(90,50,50)">11%</text>
+      </svg>
+      <div class="ring-label">Residual</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ NUTRITION -->
+<section id="nutrition">
+  <div class="section-label">Plan Nutricional</div>
+  <h2 class="section-title">TU NUTRICIÓN</h2>
+
+  <p class="nutrition-intro">
+    Basado en tu GET de 4.069 kcal/día con actividad intensa, tu plan busca un déficit calórico moderado de ~400-500 kcal para perder masa grasa de forma progresiva sin sacrificar músculo. Objetivo: 3.500-3.600 kcal/día.
+  </p>
+
+  <div class="macro-bar">
+    <div class="macro-name" style="color:#c8a96e;">PROTEÍNA</div>
+    <div class="macro-track"><div class="macro-fill" style="width:35%; background:linear-gradient(90deg,#c8a96e,#e8c98e);"></div></div>
+    <div class="macro-info">~206-220g/día<br>2.0–2.1g/kg</div>
+  </div>
+  <div class="macro-bar">
+    <div class="macro-name" style="color:#8ab4f8;">HIDRATOS</div>
+    <div class="macro-track"><div class="macro-fill" style="width:45%; background:linear-gradient(90deg,#5b8fec,#8ab4f8);"></div></div>
+    <div class="macro-info">~380-420g/día<br>Fuentes complejas</div>
+  </div>
+  <div class="macro-bar">
+    <div class="macro-name" style="color:#6dc56d;">GRASAS</div>
+    <div class="macro-track"><div class="macro-fill" style="width:20%; background:linear-gradient(90deg,#4a9e4a,#6dc56d);"></div></div>
+    <div class="macro-info">~85-100g/día<br>Saludables</div>
+  </div>
+
+  <div class="nutrition-note">
+    <strong>⚡ Pre-entrenamiento (45 min antes):</strong> membrillo, 1 banana o puñado de pasas. Hidratos simples de rápida absorción.<br>
+    <strong>🔄 Post-entrenamiento (dentro de 30 min):</strong> proteína + hidratos. Lácteos + cereales, batido, o sándwich integral.
+  </div>
+
+  <div class="nutrition-note" style="border-left-color: var(--red);">
+    <strong>⚠️ Tendones rotulianos:</strong> Incrementar consumo de omega-3 (pescado azul 3–4x/semana), colágeno hidrolizado (10g/día), vitamina C (favorece síntesis de colágeno), y cúrcuma con pimienta negra (antiinflamatorio natural). Mantener hidratación óptima: mínimo 3L/día en días de entrenamiento.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ MEALS -->
+<section id="meals" style="background:var(--black);">
+  <div class="section-label">Menú Semanal · Dic 2025</div>
+  <h2 class="section-title">PLAN ALIMENTARIO</h2>
+
+  <div class="meals-tabs">
+    <button class="meal-tab active" onclick="showDay('lunes', this)">Lunes</button>
+    <button class="meal-tab" onclick="showDay('martes', this)">Martes</button>
+    <button class="meal-tab" onclick="showDay('miercoles', this)">Miércoles</button>
+    <button class="meal-tab" onclick="showDay('jueves', this)">Jueves</button>
+    <button class="meal-tab" onclick="showDay('viernes', this)">Viernes</button>
+    <button class="meal-tab" onclick="showDay('sabado', this)">Sábado</button>
+    <button class="meal-tab" onclick="showDay('domingo', this)">Domingo</button>
+  </div>
+
+  <!-- LUNES -->
+  <div class="day-panel active" id="day-lunes">
+    <div class="meals-container" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+      <div class="day-card">
+        <div class="meal-block">
+          <div class="meal-time-label">
+            <div class="meal-icon">☀️</div>
+            <div class="meal-name">Desayuno</div>
+            <div class="meal-time">7:00–8:00</div>
+          </div>
+          <div class="meal-content">
+            Infusión con leche descremada + <strong>1 huevo + 2 claras revueltas</strong> + trozo de queso port salut light + vegetales (tomate, espinaca). Opcional: rodajas de pan integral.
+          </div>
+        </div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);">
+          <div class="meal-time-label">
+            <div class="meal-icon">🍎</div>
+            <div class="meal-name">Media Mañana</div>
+            <div class="meal-time">10:30</div>
+          </div>
+          <div class="meal-content">
+            <strong>1 fruta</strong> (manzana o kiwi) o puñado de frutos secos (2 nueces + 2 almendras + 2 castañas) + agua 500ml
+          </div>
+        </div>
+        <div class="meal-block">
+          <div class="meal-time-label">
+            <div class="meal-icon">🥗</div>
+            <div class="meal-name">Almuerzo</div>
+            <div class="meal-time">13:00</div>
+          </div>
+          <div class="meal-content">
+            <strong>Ensalada grande con pollo a la plancha (150g)</strong> — lechuga, rúcula, tomates cherry, zanahoria rallada, pepino, aceitunas + 1 huevo duro + vinagreta de aceite de oliva y limón. <em>Empezar con ensalada, luego la proteína.</em>
+          </div>
+        </div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);">
+          <div class="meal-time-label">
+            <div class="meal-icon">⚡</div>
+            <div class="meal-name">Pre-Entreno</div>
+            <div class="meal-time">17:00</div>
+          </div>
+          <div class="meal-content">
+            <strong>1 banana pequeña o membrillo</strong> + vaso de yogur descremado + 1/2 taza granola. Hidratación previa: 500ml agua.
+          </div>
+        </div>
+        <div class="meal-block">
+          <div class="meal-time-label">
+            <div class="meal-icon">💪</div>
+            <div class="meal-name">Post-Entreno</div>
+            <div class="meal-time">19:30</div>
+          </div>
+          <div class="meal-content">
+            <strong>Batido o vaso de leche + copos de cereales</strong> o sándwich 2 rebanadas pan integral con queso cremoso descremado + jamón. Dentro de los 30 min post-entreno.
+          </div>
+        </div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);">
+          <div class="meal-time-label">
+            <div class="meal-icon">🌙</div>
+            <div class="meal-name">Cena</div>
+            <div class="meal-time">21:00</div>
+          </div>
+          <div class="meal-content">
+            <strong>Filet de merluza a la plancha (180g)</strong> + ensalada de rúcula, lechuga y tomate con aceite de oliva + limón. Postre: gelatina o 1 fruta.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARTES -->
+  <div class="day-panel" id="day-martes">
+    <div class="meals-container" style="grid-template-columns:1fr;">
+      <div class="day-card">
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">☀️</div><div class="meal-name">Desayuno</div><div class="meal-time">7:00</div></div><div class="meal-content"><strong>Yogur descremado (200g) + 1 taza de avena + puñado de frutos secos + rodajas de banana o arándanos.</strong> Café negro o infusión.</div></div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);"><div class="meal-time-label"><div class="meal-icon">🍎</div><div class="meal-name">Media Mañana</div><div class="meal-time">10:30</div></div><div class="meal-content">Gelatina con frutas (frutillas, duraznos) o barrita de cereales + agua.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">🥗</div><div class="meal-name">Almuerzo</div><div class="meal-time">13:00</div></div><div class="meal-content"><strong>Omelet de espinaca — 2 claras + 1 huevo entero + trozo de queso descremado + espinaca salteada</strong> con ajo y aceite de oliva. Ensalada de tomates y pepino al costado.</div></div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);"><div class="meal-time-label"><div class="meal-icon">☕</div><div class="meal-name">Merienda</div><div class="meal-time">17:00</div></div><div class="meal-content"><strong>Licuado: 1 banana + vaso de leche descremada + 1 cda pasta de maní + hielo.</strong> Rebanada de pan lactal con mermelada light.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">🌙</div><div class="meal-name">Cena</div><div class="meal-time">21:00</div></div><div class="meal-content"><strong>Filet de pollo (150g) al horno con pimentón y orégano</strong> + puré de calabaza liviano (sin crema, con leche descremada) + ensalada de hojas verdes.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MIERCOLES -->
+  <div class="day-panel" id="day-miercoles">
+    <div class="meals-container" style="grid-template-columns:1fr;">
+      <div class="day-card">
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">☀️</div><div class="meal-name">Desayuno</div><div class="meal-time">7:00</div></div><div class="meal-content"><strong>Pancakes de avena:</strong> 1 huevo + 1/2 taza avena + 1 cda pasta de maní + leche (mezclar y cocinar). Frutas al costado (kiwi, arándanos). Infusión.</div></div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);"><div class="meal-time-label"><div class="meal-icon">🍎</div><div class="meal-name">Media Mañana</div><div class="meal-time">10:30</div></div><div class="meal-content">1 taza de pochoclo casero sin azúcar + mate o infusión.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">🥗</div><div class="meal-name">Almuerzo</div><div class="meal-time">13:00</div></div><div class="meal-content"><strong>Hamburguesa de lentejas (60g secos) o garbanzos</strong> + ensalada grande (lechuga, tomate, cebolla, zanahoria) + 1 lata de atún al natural. <em>Legumbres = proteína vegetal + fibra.</em></div></div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);"><div class="meal-time-label"><div class="meal-icon">⚡</div><div class="meal-name">Pre-Entreno</div><div class="meal-time">17:00</div></div><div class="meal-content">Café con leche + 2 tostadas con mermelada light o membrillo.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">💪</div><div class="meal-name">Post-Entreno</div><div class="meal-time">19:30</div></div><div class="meal-content"><strong>Vaso de yogur + copos de cereales sin azúcar</strong> o licuado de leche con 1 fruta y nueces.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">🌙</div><div class="meal-name">Cena</div><div class="meal-time">21:00</div></div><div class="meal-content"><strong>Churrasco de lomo (180g)</strong> al horno o plancha + ensalada mediterránea (rúcula, tomates cherry, champignones, aceitunas, aceite de oliva).</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JUEVES -->
+  <div class="day-panel" id="day-jueves">
+    <div class="meals-container" style="grid-template-columns:1fr;">
+      <div class="day-card">
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">☀️</div><div class="meal-name">Desayuno</div><div class="meal-time">7:00</div></div><div class="meal-content"><strong>Tostadas de pan integral con mantequilla de maní (2 cdas) + cubos de frutas</strong> (kiwi, arándanos). Yogur descremado al costado. Infusión.</div></div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);"><div class="meal-time-label"><div class="meal-icon">🍎</div><div class="meal-name">Media Mañana</div><div class="meal-time">10:30</div></div><div class="meal-content">Ensalada de frutas (manzana, pera, frutillas) o vaso de yogur con semillas de chía.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">🥗</div><div class="meal-name">Almuerzo</div><div class="meal-time">13:00</div></div><div class="meal-content"><strong>Ensalada grande + cubos de carne vacuna magra (100g)</strong> — lechuga, rúcula, tomates, pepino, zanahoria, cebolla + vinagreta de oliva. Cubos de queso descremado opcionales.</div></div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);"><div class="meal-time-label"><div class="meal-icon">☕</div><div class="meal-name">Merienda</div><div class="meal-time">17:00</div></div><div class="meal-content"><strong>Café con leche + revuelto (2 claras + 1 huevo + queso)</strong> o tostado de jamón y queso descremado con mucha lechuga y tomate.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">🌙</div><div class="meal-name">Cena</div><div class="meal-time">21:00</div></div><div class="meal-content"><strong>Lomito de atún (150g) a la plancha</strong> + vegetales al wok (morrón, cebolla, zanahoria, brócoli, ajo). Rico en omega-3 antiinflamatorio para los tendones.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIERNES -->
+  <div class="day-panel" id="day-viernes">
+    <div class="meals-container" style="grid-template-columns:1fr;">
+      <div class="day-card">
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">☀️</div><div class="meal-name">Desayuno</div><div class="meal-time">7:00</div></div><div class="meal-content"><strong>2 tostadas con mantequilla de maní</strong> + 1 huevo revuelto + queso. Fruta al costado. Café o té con leche descremada.</div></div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);"><div class="meal-time-label"><div class="meal-icon">🍎</div><div class="meal-name">Media Mañana</div><div class="meal-time">10:30</div></div><div class="meal-content">Minipizeta con galleta de arroz + rodaja mozzarella light + tomate + orégano (al microondas). Mate.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">🥗</div><div class="meal-name">Almuerzo</div><div class="meal-time">13:00</div></div><div class="meal-content"><strong>2 porciones de tarta integral de choclo</strong> (masa integral, relleno con choclo, queso descremado, claras) + ensalada de hojas verdes.</div></div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);"><div class="meal-time-label"><div class="meal-icon">⚡</div><div class="meal-name">Pre-Entreno</div><div class="meal-time">17:00</div></div><div class="meal-content"><strong>Bebida deportiva casera</strong> (agua + pizca de sal + limón + azúcar) o jugo de naranja natural + barrita de cereal.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">💪</div><div class="meal-name">Post-Entreno</div><div class="meal-time">19:30</div></div><div class="meal-content">Sándwich de pan lactal + queso cremoso descremado + tomate + lechuga.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">🌙</div><div class="meal-name">Cena</div><div class="meal-time">21:00</div></div><div class="meal-content"><strong>Porción de trucha o salmón (180g)</strong> a la plancha + ensalada griega (tomate, pepino, cebolla, pimiento, aceitunas, queso feta light).</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SABADO -->
+  <div class="day-panel" id="day-sabado">
+    <div class="meals-container" style="grid-template-columns:1fr;">
+      <div class="day-card">
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">☀️</div><div class="meal-name">Desayuno</div><div class="meal-time">8:00</div></div><div class="meal-content"><strong>Yogur descremado + granola + puñado de frutos secos + frutas.</strong> Día de entrenamiento funcional, cargar bien las reservas.</div></div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);"><div class="meal-time-label"><div class="meal-icon">🍎</div><div class="meal-name">Media Mañana</div><div class="meal-time">10:30</div></div><div class="meal-content">Ensalada de frutas generosa (manzana, pera, uvas, frutillas) + vaso de yogur.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">🥗</div><div class="meal-name">Almuerzo</div><div class="meal-time">13:00</div></div><div class="meal-content"><strong>Salteado de pollo (150g) + vegetales al wok</strong> (brócoli, morrón, zanahoria, cebolla, ajo) + 1 huevo. Arroz integral pequeño al costado.</div></div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);"><div class="meal-time-label"><div class="meal-icon">⚡</div><div class="meal-name">Pre-Entreno</div><div class="meal-time">16:00</div></div><div class="meal-content">Banana + café o mate.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">🌙</div><div class="meal-name">Cena</div><div class="meal-time">20:30</div></div><div class="meal-content"><strong>Solomillo de cerdo (180g)</strong> al horno con hierbas + ensalada completa (hojas verdes, zanahoria, pepino, tomates, aceitunas, nueces). <em>Cerdo magro = buena proteína.</em></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOMINGO -->
+  <div class="day-panel" id="day-domingo">
+    <div class="meals-container" style="grid-template-columns:1fr;">
+      <div class="day-card">
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">☀️</div><div class="meal-name">Desayuno</div><div class="meal-time">9:00</div></div><div class="meal-content"><strong>Brunch:</strong> Pancakes de avena (1 huevo + 1/2 taza avena + leche) + ensalada de frutas generosa + yogur + café. Día de descanso activo.</div></div>
+        <div class="meal-block" style="background:rgba(200,169,110,0.02);"><div class="meal-time-label"><div class="meal-icon">🥗</div><div class="meal-name">Almuerzo (Social)</div><div class="meal-time">14:00</div></div><div class="meal-content"><strong>Proteína: 1 churrasco de lomo o brochetas de verduras + carne a la parrilla.</strong> Si hay asado: priorizar cortes magros (lomo, entraña), mucha ensalada, evitar embutidos. <em>Podés disfrutar, es domingo.</em></div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">☕</div><div class="meal-name">Merienda</div><div class="meal-time">17:00</div></div><div class="meal-content">Fruta o vaso de yogur + mate. Liviano porque el almuerzo fue abundante.</div></div>
+        <div class="meal-block"><div class="meal-time-label"><div class="meal-icon">🌙</div><div class="meal-name">Cena</div><div class="meal-time">21:00</div></div><div class="meal-content"><strong>Omelet de verduras con queso</strong> (espinaca, morrón, champiñones, cebolla) + ensalada griega. Cena liviana post-almuerzo social.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ ROUTINE -->
+<section id="routine">
+  <div class="section-label">Rutina Mensual · 4 Días Pesas + 2 Funcional</div>
+  <h2 class="section-title">ENTRENAMIENTO</h2>
+
+  <p style="color:var(--gray-light);font-size:0.9rem;line-height:1.7;max-width:750px;margin-bottom:1rem;">
+    6 días de entrenamiento. Hombros integrados en los días de pecho — <strong style="color:var(--white);">siempre en este orden: Pecho → Hombros → Tríceps.</strong>
+    Lunes trabaja deltoides medio y posterior (laterales + facepull). Viernes trabaja press militar y Arnold. Así el deltoides anterior no se sobrecarga dos veces con press.
+    <strong style="color:var(--red);">Tendones rotulianos protegidos:</strong> sin sentadilla libre, sin leg press profunda, sin saltos.
+  </p>
+
+  <div class="nutrition-note" style="margin-bottom:2rem;">
+    <strong>📖 Cómo leer la rutina:</strong> Series×Reps — Tempo (ej: 3-1-1 = 3s excéntrico, 1s pausa, 1s concéntrico) — % de 1RM orientativo — Descanso entre series.
+    <strong style="color:var(--white);">RIR = Reps In Reserve</strong> (cuántas reps te quedaron en el tanque al terminar la serie).
+  </div>
+
+  <div class="week-structure">
+    <div class="ws-day"><div class="ws-label">LUN</div><div class="ws-bar ws-train">Pecho + Hombros + Tríceps A</div></div>
+    <div class="ws-day"><div class="ws-label">MAR</div><div class="ws-bar ws-func">Funcional (gym)</div></div>
+    <div class="ws-day"><div class="ws-label">MIÉ</div><div class="ws-bar ws-train">Espalda + Bíceps A</div></div>
+    <div class="ws-day"><div class="ws-label">JUE</div><div class="ws-bar ws-func">Funcional (gym)</div></div>
+    <div class="ws-day"><div class="ws-label">VIE</div><div class="ws-bar ws-train">Pecho + Hombros + Tríceps B</div></div>
+    <div class="ws-day"><div class="ws-label">SÁB</div><div class="ws-bar ws-train">Espalda B + Pierna</div></div>
+    <div class="ws-day"><div class="ws-label">DOM</div><div class="ws-bar ws-rest">Descanso</div></div>
+  </div>
+
+  <div class="week-tabs">
+    <button class="week-tab active" onclick="showWeek('s1',this)">SEMANA 1 — BASE</button>
+    <button class="week-tab" onclick="showWeek('s2',this)">SEMANA 2 — CARGA</button>
+    <button class="week-tab" onclick="showWeek('s3',this)">SEMANA 3 — INTENSIDAD</button>
+    <button class="week-tab" onclick="showWeek('s4',this)">SEMANA 4 — DELOAD</button>
+  </div>
+
+  <!-- ═══ SEMANA 1 -->
+  <div class="week-panel active" id="week-s1">
+    <div class="workout-days-grid">
+
+      <!-- LUNES: PECHO + HOMBROS (MEDIO/POST) + TRICEPS A -->
+      <div class="workout-day">
+        <div class="wd-header">
+          <div class="wd-day-num">LUN</div>
+          <div class="wd-info">
+            <div class="wd-dayname">PECHO + HOMBROS + TRÍCEPS A</div>
+            <div class="wd-focus">Deltoides medio y posterior · Fuerza base</div>
+            <div class="wd-duration">⏱ 85 min · RIR objetivo: 2</div>
+          </div>
+        </div>
+        <div class="wd-body">
+          <div class="phase">
+            <div class="phase-title"><span>CALENTAMIENTO</span><span style="color:var(--gray-light);">10 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Bicicleta o cinta a ritmo suave</div><div class="ex-note">FC ~120 bpm. Activar sistema cardiovascular sin fatigar.</div></div><div class="ex-params">5 min</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Rotaciones de hombro + círculos escapulares</div><div class="ex-note">10 hacia adelante + 10 hacia atrás. Movilizar articulación glenohumeral.</div></div><div class="ex-params">2×10</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press con barra vacía (activación)</div><div class="ex-note">2 series livianas para activar el patrón motor del press.</div></div><div class="ex-params">2×15<br>Barra sola</div></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-title"><span>BLOQUE 1 — PECHO</span><span style="color:var(--gray-light);">~25 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press banca plano con barra</div><div class="ex-note">Agarre levemente más ancho que los hombros. Bajar hasta rozar el pecho sin rebotar. Escápulas retraídas y deprimidas todo el movimiento. Arco natural en la espalda baja — no exagerado.</div></div><div class="ex-params">4×6-8<br>Tempo 3-0-1<br>~75% 1RM<br>2 min desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press banca inclinado 30° con mancuernas</div><div class="ex-note">Inclinación 30° (no 45°, que recluta más hombro). Codos a 75° del tronco — nunca abiertos en cruz. Foco en pecho clavicular.</div></div><div class="ex-params">3×8-10<br>Tempo 3-1-1<br>~65% 1RM<br>90 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Aperturas en polea alta (cruce declinado)</div><div class="ex-note">Poleas a la altura de la cabeza. Jalón hacia abajo y adentro terminando con manos a la altura de la cadera. Codos levemente flexionados y fijos. Máxima contracción al cruzar las manos. Este es el ejercicio que más define el pecho.</div></div><div class="ex-params">3×12-15<br>Tempo 2-1-2<br>75 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Fondos en paralelas (pecho)</div><div class="ex-note">Torso inclinado hacia adelante ~30°. Bajar hasta que hombros queden por debajo de los codos. Si es muy fácil: chaleco con lastre.</div></div><div class="ex-params">3×10-12<br>Tempo 3-0-1<br>90 s desc.</div></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-title"><span>BLOQUE 2 — HOMBROS (MEDIO + POSTERIOR)</span><span style="color:var(--gray-light);">~20 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Elevaciones laterales con mancuernas</div><div class="ex-note">Pulgares levemente hacia ABAJO. Codos levemente doblados y fijos. Llegar hasta la altura del hombro, no más. Subir en 1 seg, bajar MUY lento en 4 seg. Peso liviano — acá se trabaja con tiempo bajo tensión, no con kilos. El deltoides anterior ya viene fatigado del pecho, así que el medio toma más protagonismo.</div></div><div class="ex-params">4×15<br>Tempo 1-0-4<br>75 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Elevaciones laterales en polea baja (un brazo)</div><div class="ex-note">La polea mantiene tensión en todo el rango. Pasar el cable por delante del cuerpo. Excelente segunda variante para el deltoides medio.</div></div><div class="ex-params">3×15/lado<br>Tempo 1-1-3<br>60 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Facepull en polea (deltoides posterior)</div><div class="ex-note">Polea a la altura de la cara. Jalar hacia la nariz separando las manos al final — como si abrieras un libro detrás de la cabeza. Codos arriba siempre. Clave para postura, salud del hombro y definición posterior. No negociar con este ejercicio.</div></div><div class="ex-params">4×15<br>Tempo 1-2-1<br>60 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Encogimiento con mancuernas (trapecio)</div><div class="ex-note">Subir verticalmente, sin circular. Sostener 1 seg arriba. Mancuernas a los costados del cuerpo, no adelante.</div></div><div class="ex-params">3×12<br>Tempo 1-1-2<br>75 s desc.</div></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-title"><span>BLOQUE 3 — TRÍCEPS</span><span style="color:var(--gray-light);">~15 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Extensión de tríceps en polea alta (cuerda)</div><div class="ex-note">Codos fijos al costado del tronco — no dejar que suban. Al final del movimiento separar las puntas de la cuerda y supinar levemente para máxima contracción. El tríceps viene pre-fatigado de los fondos y el press, así que el peso será menor que si lo hicieras primero — es normal.</div></div><div class="ex-params">4×12<br>Tempo 2-1-1<br>90 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press francés con barra EZ acostado</div><div class="ex-note">Barra baja hacia la frente, no la nariz. Codos apuntando al techo, fijos. Rango completo. Si hay dolor en el codo: reemplazar por mancuernas neutras.</div></div><div class="ex-params">3×10<br>Tempo 3-0-1<br>90 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Patada de tríceps en polea baja (un brazo)</div><div class="ex-note">Tronco paralelo al suelo, codo pegado y fijo. Extender completamente girando la muñeca hacia afuera al final. Finalizador de volumen.</div></div><div class="ex-params">3×15/lado<br>Tempo 1-2-1<br>60 s desc.</div></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-title"><span>VUELTA A LA CALMA</span><span style="color:var(--gray-light);">5 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Estiramiento pectoral en pared + hombros cruzados</div></div><div class="ex-params">30 s/lado × 2</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Estiramiento de tríceps sobre la cabeza</div></div><div class="ex-params">30 s/lado × 2</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MARTES: FUNCIONAL -->
+      <div class="workout-day">
+        <div class="wd-header">
+          <div class="wd-day-num">MAR</div>
+          <div class="wd-info">
+            <div class="wd-dayname">FUNCIONAL</div>
+            <div class="wd-focus">Clase del gimnasio</div>
+            <div class="wd-duration">Según el gym</div>
+          </div>
+        </div>
+        <div class="rest-day">
+          <div class="rest-icon">🏃</div>
+          <div class="rest-label">FUNCIONAL</div>
+          <div class="rest-desc">Clase del gimnasio. Hidratate bien antes. Post-clase: proteína + hidratos dentro de los 30 min (yogur + cereales o sándwich integral).</div>
+        </div>
+      </div>
+
+      <!-- MIERCOLES: ESPALDA + BICEPS A -->
+      <div class="workout-day">
+        <div class="wd-header">
+          <div class="wd-day-num">MIÉ</div>
+          <div class="wd-info">
+            <div class="wd-dayname">ESPALDA + BÍCEPS A</div>
+            <div class="wd-focus">Amplitud + grosor · Fuerza base</div>
+            <div class="wd-duration">⏱ 80 min · RIR objetivo: 2</div>
+          </div>
+        </div>
+        <div class="wd-body">
+          <div class="phase">
+            <div class="phase-title"><span>CALENTAMIENTO</span><span style="color:var(--gray-light);">10 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Remo liviano en máquina (warm-up)</div><div class="ex-note">Activar retractores escapulares antes de cargar peso.</div></div><div class="ex-params">2×15<br>Muy liviano</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Facepull con banda + separaciones</div><div class="ex-note">Clave para salud del manguito rotador.</div></div><div class="ex-params">2×15</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Dominada asistida (activación)</div></div><div class="ex-params">2×5<br>Asistida</div></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-title"><span>BLOQUE 1 — AMPLITUD (ESPALDA ANCHA)</span><span style="color:var(--gray-light);">~30 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Jalón al pecho agarre ancho pronado ⭐ EJERCICIO PRINCIPAL</div><div class="ex-note">Reemplaza dominadas hasta tener la fuerza relativa necesaria. Cargarlo al máximo — este es el ejercicio más importante del día. Bajar la barra al pecho alto, NO al cuello. Codos apuntando al suelo al final. Arqueá el pecho levemente hacia adelante. Tempo lento en la bajada — no dejar que el peso te jale. Objetivo a largo plazo: mover el 80% de tu peso corporal (~82kg) limpio → ahí las dominadas van a salir solas.</div></div><div class="ex-params">4×8-10<br>Tempo 2-1-3<br>~75% 1RM<br>2 min desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Jalón al pecho en polea (agarre ancho pronado)</div><div class="ex-note">Bajar la barra al pecho alto, no al cuello. Codos apuntando al suelo al final. Arqueá levemente el pecho hacia adelante.</div></div><div class="ex-params">3×10-12<br>Tempo 2-1-1<br>90 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Jalón en polea (agarre neutro — mancorna)</div><div class="ex-note">Agarre neutro activa más el dorsal inferior. Codos pegan al tronco al final. Da la forma de V en la cintura.</div></div><div class="ex-params">3×12<br>Tempo 2-0-1<br>75 s desc.</div></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-title"><span>BLOQUE 2 — GROSOR (ESPALDA DENSA)</span><span style="color:var(--gray-light);">~20 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Remo con barra pronado (Pendlay Row)</div><div class="ex-note">Tronco paralelo al suelo ~45°. Barra parte del piso en cada rep. Jalón al ombligo, no al pecho. Escápulas se juntan al final. Controla la bajada: no tirar la barra.</div></div><div class="ex-params">4×8<br>Tempo 1-1-3<br>~65% 1RM<br>2 min desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Remo mancuerna unilateral en banco</div><div class="ex-note">Jalón con el codo pegado al tronco, no abierto. Llevar el codo lo más arriba posible. Rotar levemente el tronco para mayor rango. Corrige desbalances entre lados.</div></div><div class="ex-params">3×10/lado<br>Tempo 2-1-1<br>90 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Remo en polea baja (agarre neutro)</div><div class="ex-note">Pecho saliente, no redondear la espalda baja. Codos pegados al tronco. Pausa de 1 seg con escápulas juntas al final.</div></div><div class="ex-params">3×12<br>Tempo 2-1-1<br>75 s desc.</div></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-title"><span>BLOQUE 3 — BÍCEPS</span><span style="color:var(--gray-light);">~15 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Curl con barra EZ (supino)</div><div class="ex-note">Codos fijos a los costados. Subir en 1 seg, bajar en 3 seg — el excéntrico lento genera más hipertrofia. Nunca balancear el cuerpo para subir más peso.</div></div><div class="ex-params">4×10<br>Tempo 1-0-3<br>90 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Curl martillo con mancuernas (alterno)</div><div class="ex-note">Agarre neutro (pulgar arriba). Trabaja braquial y braquiorradial — da espesor al brazo. Alternar sin descanso entre repeticiones.</div></div><div class="ex-params">3×10/lado<br>Tempo 2-0-1<br>75 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Curl en polea baja (peak contraction)</div><div class="ex-note">El codo queda por delante del cuerpo → máxima tensión en el pico. Sostener 2 seg arriba.</div></div><div class="ex-params">3×15<br>Tempo 1-2-1<br>60 s desc.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JUEVES: FUNCIONAL -->
+      <div class="workout-day">
+        <div class="wd-header">
+          <div class="wd-day-num">JUE</div>
+          <div class="wd-info">
+            <div class="wd-dayname">FUNCIONAL</div>
+            <div class="wd-focus">Clase del gimnasio</div>
+            <div class="wd-duration">Según el gym</div>
+          </div>
+        </div>
+        <div class="rest-day">
+          <div class="rest-icon">🏃</div>
+          <div class="rest-label">FUNCIONAL</div>
+          <div class="rest-desc">Clase del gimnasio. Llegás descansado después del miércoles de pesas. Post-clase: proteína + hidratos dentro de los 30 min.</div>
+        </div>
+      </div>
+
+      <!-- VIERNES: PECHO + HOMBROS (PRESS) + TRICEPS B -->
+      <div class="workout-day">
+        <div class="wd-header">
+          <div class="wd-day-num">VIE</div>
+          <div class="wd-info">
+            <div class="wd-dayname">PECHO + HOMBROS + TRÍCEPS B</div>
+            <div class="wd-focus">Press militar + Arnold · Variante pecho</div>
+            <div class="wd-duration">⏱ 85 min · RIR objetivo: 2</div>
+          </div>
+        </div>
+        <div class="wd-body">
+          <div class="phase">
+            <div class="phase-title"><span>CALENTAMIENTO</span><span style="color:var(--gray-light);">10 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Cardio suave + rotaciones de hombro</div></div><div class="ex-params">5 min + 2×10</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Flexiones de pecho (warm-up técnico)</div><div class="ex-note">2 series para activar sin cargar peso externo.</div></div><div class="ex-params">2×12</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Facepull liviano (obligatorio)</div><div class="ex-note">Antes del press militar, siempre activar el manguito rotador.</div></div><div class="ex-params">2×15</div></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-title"><span>BLOQUE 1 — PECHO VARIANTE</span><span style="color:var(--gray-light);">~22 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press banca declinado con barra</div><div class="ex-note">Banco declinado 15-20°. Trabaja pecho inferior y esternal. La barra baja al esternón inferior. Más carga que el plano por el ángulo.</div></div><div class="ex-params">4×8<br>Tempo 3-0-1<br>~78% 1RM<br>2 min desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press con mancuernas plano</div><div class="ex-note">Mayor rango de movimiento que la barra. Bajar hasta sentir el pecho estirado — codos por debajo del hombro. Juntar mancuernas arriba sin chocarlas.</div></div><div class="ex-params">3×10<br>Tempo 3-1-1<br>90 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Aperturas con mancuernas en banco plano</div><div class="ex-note">Codos levemente doblados y FIJOS. Bajar hasta estiramiento máximo. Subir dibujando un arco — como si abrazaras un árbol.</div></div><div class="ex-params">3×12<br>Tempo 3-1-2<br>75 s desc.</div></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-title"><span>BLOQUE 2 — HOMBROS (PRESS + ANTERIOR)</span><span style="color:var(--gray-light);">~22 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press militar con mancuernas sentado</div><div class="ex-note">Espalda recta contra el respaldo a 90°. Mancuernas a la altura de las orejas al inicio. Subir sin bloquear el codo — mantener tensión. NO arquear la espalda baja. El viernes el deltoides anterior viene más fresco que el lunes porque el pecho de hoy fue variante (declinado), que lo recluta menos que el plano.</div></div><div class="ex-params">4×8-10<br>Tempo 3-0-1<br>~65% 1RM<br>2 min desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Arnold Press</div><div class="ex-note">Empezar con palmas hacia vos, rotar hasta palmas al frente al subir. Movimiento completo que trabaja los 3 haces del deltoides. Peso menor que el press normal.</div></div><div class="ex-params">3×10<br>Tempo 2-0-2<br>90 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Elevaciones frontales alternadas con mancuerna</div><div class="ex-note">Completar el trabajo del deltoides anterior que el press no terminó. Codo levemente doblado y fijo. Subir hasta la altura del hombro, no más.</div></div><div class="ex-params">3×10/lado<br>Tempo 2-0-2<br>60 s desc.</div></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-title"><span>BLOQUE 3 — TRÍCEPS VARIANTE</span><span style="color:var(--gray-light);">~16 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Fondos en banco con lastre (dips)</div><div class="ex-note">Manos en banco detrás, pies en banco adelante, disco en el regazo. Bajar hasta codos a 90°. Codos apuntando atrás, no abiertos. Excelente para cabeza lateral del tríceps.</div></div><div class="ex-params">4×12<br>Tempo 3-0-1<br>90 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press cerrado en barra (close grip bench)</div><div class="ex-note">Agarre al ancho de los hombros — no más cerrado, estresa el codo. Codos cerca del tronco durante el descenso. Barra baja al esternón bajo.</div></div><div class="ex-params">3×10<br>Tempo 3-0-1<br>2 min desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Extensión de tríceps sobre la cabeza con mancuerna (un brazo)</div><div class="ex-note">El brazo sube perpendicular al suelo. Bajar la mancuerna detrás de la cabeza — máximo estiramiento de la cabeza larga. Codo fijo.</div></div><div class="ex-params">3×12/lado<br>Tempo 3-0-1<br>75 s desc.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SABADO: ESPALDA B + PIERNA -->
+      <div class="workout-day">
+        <div class="wd-header">
+          <div class="wd-day-num">SÁB</div>
+          <div class="wd-info">
+            <div class="wd-dayname">ESPALDA B + PIERNA ADAPTADA</div>
+            <div class="wd-focus">Isquios · Glúteo · Sin estrés rotuliano</div>
+            <div class="wd-duration">⏱ 85 min · RIR objetivo: 2</div>
+          </div>
+        </div>
+        <div class="wd-body">
+          <div class="phase">
+            <div class="phase-title"><span>CALENTAMIENTO</span><span style="color:var(--gray-light);">12 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Bici estática suave</div><div class="ex-note">Calentar rodillas progresivamente. Empezar sin resistencia.</div></div><div class="ex-params">5 min</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Activación glútea con banda elástica</div><div class="ex-note">Paso lateral + patada trasera. Despertar el glúteo antes de cargar.</div></div><div class="ex-params">2×15/lado</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Puente de glúteos bodyweight (warm-up)</div></div><div class="ex-params">2×15</div></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-title"><span>BLOQUE 1 — ESPALDA VARIANTE</span><span style="color:var(--gray-light);">~25 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Jalón al pecho agarre supino ⭐ EJERCICIO PRINCIPAL</div><div class="ex-note">Variante supina del jalón — activa más el bíceps como asistente y permite mayor rango de movimiento que el pronado. Cargarlo al máximo igual que el miércoles. Codos pegados al tronco al final del movimiento. Pecho hacia la barra, no la cabeza hacia adelante.</div></div><div class="ex-params">4×8-10<br>Tempo 2-1-3<br>~75% 1RM<br>2 min desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Remo en máquina Hammer Strength (o T-bar)</div><div class="ex-note">Pecho apoyado en el pad — sin trampa con el torso. Codos pegados al tronco. Jalón hasta que los codos queden detrás del tronco. Máxima retracción escapular.</div></div><div class="ex-params">4×10<br>Tempo 2-1-2<br>90 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Pullover con mancuerna en banco</div><div class="ex-note">Acostado transversal en el banco. Mancuerna detrás de la cabeza hasta estiramiento máximo del dorsal. Codos levemente doblados. Da forma a la cintura. Volver por encima del pecho, no del abdomen.</div></div><div class="ex-params">3×12<br>Tempo 3-1-1<br>75 s desc.</div></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-title"><span>BLOQUE 2 — PIERNA (PROTOCOLO TENDÓN SEGURO)</span><span style="color:var(--gray-light);">~35 min</span></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Hip Thrust con barra ⭐ EJERCICIO PRINCIPAL</div><div class="ex-note">Espalda alta apoyada en banco. Barra con pad sobre las caderas. Pies al ancho de caderas, rodillas a 90° en el punto alto. EMPUJAR CON LOS TALONES. Glúteo apretado arriba, sostener 2 seg. La cadera sube, las rodillas NO se doblan más. Reemplaza la sentadilla por completo.</div></div><div class="ex-params">4×10-12<br>Tempo 1-2-1<br>~80-100kg<br>2 min desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Peso Muerto Rumano con barra (RDL)</div><div class="ex-note">Bisagra de cadera pura: empujar las caderas hacia atrás como cerrando un cajón con el trasero. Barra roza las piernas todo el tiempo. Bajar hasta sentir isquiotibiales estirados. Rodilla levemente doblada y FIJA — no trabaja aquí.</div></div><div class="ex-params">4×10<br>Tempo 1-0-3<br>~60-80kg<br>2 min desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Curl de isquiotibiales en máquina acostado</div><div class="ex-note">Aislamiento puro del isquio, sin estrés en la rodilla. Subir en 1 seg, bajar en 3 seg — el excéntrico largo fortalece el tendón y protege la rodilla.</div></div><div class="ex-params">4×12<br>Tempo 1-1-3<br>90 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Abducción de cadera en máquina</div><div class="ex-note">Glúteo medio — da forma lateral a la cadera. Apretar el glúteo en el punto máximo, sostener 1 seg.</div></div><div class="ex-params">3×15<br>Tempo 1-1-2<br>75 s desc.</div></div>
+            <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Elevaciones de pantorrilla en máquina o step</div><div class="ex-note">Rango completo: estiramiento máximo abajo, punta máxima arriba. Subir rápido, bajar muy lento en 4 seg. Si hay dolor en tendón de Aquiles: reducir peso y rango.</div></div><div class="ex-params">4×15-20<br>Tempo 1-1-4<br>60 s desc.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOMINGO -->
+      <div class="workout-day">
+        <div class="wd-header">
+          <div class="wd-day-num">DOM</div>
+          <div class="wd-info">
+            <div class="wd-dayname">DESCANSO TOTAL</div>
+            <div class="wd-focus">Síntesis proteica · Recuperación</div>
+            <div class="wd-duration">El músculo crece hoy</div>
+          </div>
+        </div>
+        <div class="rest-day">
+          <div class="rest-icon">💤</div>
+          <div class="rest-label">DESCANSO</div>
+          <div class="rest-desc">Sin gym. Comer bien, dormir 8-9 horas. Foam roller suave si hay tensión acumulada. Es tan importante como entrenar.</div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /week-s1 -->
+
+  <!-- ═══ SEMANA 2 -->
+  <div class="week-panel" id="week-s2">
+    <div class="nutrition-note" style="margin-bottom:1.5rem;">
+      <strong>📈 Semana 2 — Carga progresiva:</strong> Subir 5% el peso en todos los ejercicios compuestos (press banca, dominadas, remo, hip thrust, RDL, press militar). Reducir descansos 10-15 seg. Misma técnica, más intensidad. RIR objetivo: 1-2.
+    </div>
+    <div class="workout-days-grid">
+
+      <div class="workout-day"><div class="wd-header"><div class="wd-day-num">LUN</div><div class="wd-info"><div class="wd-dayname">PECHO + HOMBROS + TRÍCEPS A</div><div class="wd-focus">+5% peso · Superserie tríceps</div><div class="wd-duration">⏱ 88 min</div></div></div><div class="wd-body">
+        <div class="phase"><div class="phase-title"><span>CAMBIOS RESPECTO S1</span></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press banca plano: subir 5kg</div><div class="ex-note">Si en S1 ibas con 90kg × 8 reps → hoy 95kg × 6-8 reps.</div></div><div class="ex-params">4×6-8<br>105 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press inclinado mancuernas: +2kg por mancuerna</div></div><div class="ex-params">3×8-10<br>75 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Laterales: mismo peso, reducir descanso a 60 seg</div><div class="ex-note">El delta medio no necesita más peso — necesita más volumen y menos descanso.</div></div><div class="ex-params">4×15<br>60 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">NUEVA TÉCNICA — Superserie de tríceps:</div><div class="ex-note">Extensión polea × 12 reps → SIN DESCANSO → Press francés × 10 reps → Descansar 90 seg → Repetir 3 veces.</div></div><div class="ex-params">3 supersets<br>90 s desc.</div></div>
+        </div>
+      </div></div>
+
+      <div class="workout-day rest-day"><div class="rest-icon">🏃</div><div class="rest-label">MAR — FUNCIONAL</div><div class="rest-desc">Clase del gimnasio. Post-clase: proteína + hidratos.</div></div>
+
+      <div class="workout-day"><div class="wd-header"><div class="wd-day-num">MIÉ</div><div class="wd-info"><div class="wd-dayname">ESPALDA + BÍCEPS A</div><div class="wd-focus">+5% · Superserie bíceps</div><div class="wd-duration">⏱ 83 min</div></div></div><div class="wd-body">
+        <div class="phase"><div class="phase-title"><span>CAMBIOS RESPECTO S1</span></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Jalón agarre ancho: subir el pin 1-2 posiciones respecto a S1</div><div class="ex-note">La progresión en la polea es la clave para llegar a las dominadas. Cada semana un poco más de peso con la misma técnica.</div></div><div class="ex-params">4×8-10<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Remo barra: subir 5kg</div></div><div class="ex-params">4×8<br>105 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">NUEVA TÉCNICA — Superserie de bíceps:</div><div class="ex-note">Curl barra EZ × 10 reps → SIN DESCANSO → Curl martillo × 10 reps → Descansar 90 seg → Repetir 3 veces.</div></div><div class="ex-params">3 supersets<br>90 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Agregar: Curl concentrado en banco inclinado 45°</div><div class="ex-note">Brazo colgando, curl sin llevar el codo hacia adelante. Máximo estiramiento del bíceps.</div></div><div class="ex-params">3×10/lado<br>75 s desc.</div></div>
+        </div>
+      </div></div>
+
+      <div class="workout-day rest-day"><div class="rest-icon">🏃</div><div class="rest-label">JUE — FUNCIONAL</div><div class="rest-desc">Clase del gimnasio. Llegás descansado. Post-clase: proteína + hidratos.</div></div>
+
+      <div class="workout-day"><div class="wd-header"><div class="wd-day-num">VIE</div><div class="wd-info"><div class="wd-dayname">PECHO + HOMBROS + TRÍCEPS B</div><div class="wd-focus">+5% · Drop set aperturas</div><div class="wd-duration">⏱ 88 min</div></div></div><div class="wd-body">
+        <div class="phase"><div class="phase-title"><span>CAMBIOS RESPECTO S1</span></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press declinado: subir 5kg</div></div><div class="ex-params">4×8<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press militar: subir 2kg por mancuerna</div></div><div class="ex-params">4×8-10<br>105 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">NUEVA TÉCNICA — Drop set en aperturas mancuernas:</div><div class="ex-note">Serie normal × 12 reps → bajar 30% el peso → seguir hasta fallo → descansar 90 seg. Solo en la ÚLTIMA serie.</div></div><div class="ex-params">2 normal + 1 drop<br>90 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Tríceps: agregar superserie (fondos banco + extensión cabeza)</div><div class="ex-note">Fondos banco × 12 → SIN DESCANSO → Extensión sobre la cabeza × 10 → 90 seg → Repetir 3 veces.</div></div><div class="ex-params">3 supersets<br>90 s desc.</div></div>
+        </div>
+      </div></div>
+
+      <div class="workout-day"><div class="wd-header"><div class="wd-day-num">SÁB</div><div class="wd-info"><div class="wd-dayname">ESPALDA B + PIERNA</div><div class="wd-focus">+10kg Hip Thrust · +5kg RDL</div><div class="wd-duration">⏱ 88 min</div></div></div><div class="wd-body">
+        <div class="phase"><div class="phase-title"><span>CAMBIOS RESPECTO S1</span></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Hip Thrust: subir 10kg</div><div class="ex-note">El glúteo es el músculo más grande del cuerpo — progresa rápido. No tener miedo de cargar.</div></div><div class="ex-params">4×10<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">RDL: subir 5kg</div></div><div class="ex-params">4×10<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Agregar: Good Morning con barra liviana</div><div class="ex-note">Barra en trapecios. Bisagra de cadera hasta torso paralelo al suelo. Isquiotibiales + espalda baja. Sin carga en rodilla.</div></div><div class="ex-params">3×12<br>~30-40kg<br>90 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Jalón supino: subir el pin respecto a S1</div><div class="ex-note">Misma progresión que el jalón pronado del miércoles.</div></div><div class="ex-params">4×8-10<br>2 min desc.</div></div>
+        </div>
+      </div></div>
+
+      <div class="workout-day rest-day"><div class="rest-icon">💤</div><div class="rest-label">DOM — DESCANSO</div><div class="rest-desc">Descanso total. La progresión de S2 habrá generado bastante fatiga acumulada. El domingo es sagrado.</div></div>
+    </div>
+  </div><!-- /week-s2 -->
+
+  <!-- ═══ SEMANA 3 -->
+  <div class="week-panel" id="week-s3">
+    <div class="nutrition-note" style="margin-bottom:1.5rem;">
+      <strong>🔥 Semana 3 — Máxima intensidad:</strong> La semana más exigente del mes. No aumentar más el peso respecto a S2 — la intensidad viene de drop sets, tri-sets y TBT. RIR objetivo: 0-1 (al fallo o casi).
+    </div>
+    <div class="workout-days-grid">
+
+      <div class="workout-day"><div class="wd-header"><div class="wd-day-num">LUN</div><div class="wd-info"><div class="wd-dayname">PECHO + HOMBROS + TRÍCEPS A</div><div class="wd-focus">Triple drop set · TBT · Tri-set tríceps</div><div class="wd-duration">⏱ 90 min</div></div></div><div class="wd-body">
+        <div class="phase"><div class="phase-title"><span>CAMBIOS RESPECTO S2</span></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press banca: 3 series normales + 1 TRIPLE DROP SET final</div><div class="ex-note">Serie 4: peso S2 × máx reps → bajar 20% → máx reps → bajar otro 20% → máx reps. Sin descanso entre etapas. Al final no podés mover el brazo.</div></div><div class="ex-params">3 normal + 1 triple drop<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press inclinado TBT: tempo 4-2-1</div><div class="ex-note">4 seg bajando, 2 seg en el punto bajo (estiramiento máximo), 1 seg subiendo. Bajar peso ~20% respecto a S2 — el estímulo es mayor igual.</div></div><div class="ex-params">3×8<br>Tempo 4-2-1<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Laterales: drop set en cada serie</div><div class="ex-note">Peso normal × 15 reps → bajar 30% → seguir hasta fallo. Las 4 series con drop. Delta medio completamente agotado.</div></div><div class="ex-params">4×drop<br>75 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">NUEVA TÉCNICA — Tri-set de tríceps:</div><div class="ex-note">Extensión polea × 12 → SIN DESCANSO → Press francés × 10 → SIN DESCANSO → Fondos banco × máx → descansar 2 min → Repetir 3 veces.</div></div><div class="ex-params">3 tri-sets<br>2 min desc.</div></div>
+        </div>
+      </div></div>
+
+      <div class="workout-day rest-day"><div class="rest-icon">🏃</div><div class="rest-label">MAR — FUNCIONAL</div><div class="rest-desc">Clase del gimnasio. S3 es intensa — llegar bien alimentado y descansado.</div></div>
+
+      <div class="workout-day"><div class="wd-header"><div class="wd-day-num">MIÉ</div><div class="wd-info"><div class="wd-dayname">ESPALDA + BÍCEPS A</div><div class="wd-focus">Jalón al fallo · 21s · Superseries</div><div class="wd-duration">⏱ 85 min</div></div></div><div class="wd-body">
+        <div class="phase"><div class="phase-title"><span>CAMBIOS RESPECTO S2</span></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Jalón agarre ancho: 5 series al FALLO</div><div class="ex-note">Máximo de reps con el peso de S2 cada serie. Anotar cuántas reps por serie — para comparar próximo mes. Cuando llegues a 15 reps limpias con el 80% de tu peso corporal (~82kg) en la polea, las dominadas van a aparecer solas.</div></div><div class="ex-params">5×fallo<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Superserie espalda: Remo barra + Jalón polea neutro</div><div class="ex-note">Remo × 10 → SIN DESCANSO → Jalón neutro × 12 → 2 min → Repetir 3 veces.</div></div><div class="ex-params">3 supersets<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Bíceps: Curl 21s con barra EZ</div><div class="ex-note">7 reps desde abajo hasta codo a 90° + 7 reps desde 90° hasta arriba + 7 reps rango completo. Sin descanso entre fases. 4 series.</div></div><div class="ex-params">4×21<br>90 s desc.</div></div>
+        </div>
+      </div></div>
+
+      <div class="workout-day rest-day"><div class="rest-icon">🏃</div><div class="rest-label">JUE — FUNCIONAL</div><div class="rest-desc">Clase del gimnasio. Después de miércoles intenso el jueves funcional actúa casi como activo de recuperación metabólica.</div></div>
+
+      <div class="workout-day"><div class="wd-header"><div class="wd-day-num">VIE</div><div class="wd-info"><div class="wd-dayname">PECHO + HOMBROS + TRÍCEPS B</div><div class="wd-focus">TBT · Drop sets · Fallo</div><div class="wd-duration">⏱ 90 min</div></div></div><div class="wd-body">
+        <div class="phase"><div class="phase-title"><span>CAMBIOS RESPECTO S2</span></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press declinado TBT: tempo 4-1-1</div></div><div class="ex-params">3×8<br>Tempo 4-1-1<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Aperturas mancuernas: drop set en las 3 series</div><div class="ex-note">Todas las series con drop: peso normal × 10 → bajar 25% → hasta fallo.</div></div><div class="ex-params">3×drop<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Tri-set hombros (los 3 haces):</div><div class="ex-note">Press militar × 10 → SIN DESCANSO → Laterales × 15 → SIN DESCANSO → Frontales alternadas × 8/lado → 2 min → Repetir 4 veces.</div></div><div class="ex-params">4 tri-sets<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Flexiones al fallo como finalizador</div><div class="ex-note">5 series al máximo de reps. Descanso de 45 seg entre series.</div></div><div class="ex-params">5×fallo<br>45 s desc.</div></div>
+        </div>
+      </div></div>
+
+      <div class="workout-day"><div class="wd-header"><div class="wd-day-num">SÁB</div><div class="wd-info"><div class="wd-dayname">ESPALDA B + PIERNA</div><div class="wd-focus">Hip Thrust máximo · Superserie isquios</div><div class="wd-duration">⏱ 90 min</div></div></div><div class="wd-body">
+        <div class="phase"><div class="phase-title"><span>CAMBIOS RESPECTO S2</span></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Hip Thrust: 5 series + drop set en la última</div><div class="ex-note">Si venías con 110kg → probar 120-130kg esta semana. El hip thrust de S3 es el test real de fuerza de glúteo.</div></div><div class="ex-params">4 normal + 1 drop<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">NUEVA TÉCNICA — Superserie isquios:</div><div class="ex-note">RDL × 10 reps → SIN DESCANSO → Curl isquios en máquina × 12 reps → 2 min → Repetir 3 veces. Isquiotibiales completamente agotados.</div></div><div class="ex-params">3 supersets<br>2 min desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Curl isquios TBT: tempo 1-2-4</div><div class="ex-note">Subir rápido, sostener 2 seg arriba, bajar en 4 seg. El excéntrico largo fortalece el tendón — protege la rodilla.</div></div><div class="ex-params">3×10<br>Tempo 1-2-4<br>90 s desc.</div></div>
+        </div>
+      </div></div>
+
+      <div class="workout-day rest-day"><div class="rest-icon">💤</div><div class="rest-label">DOM — DESCANSO</div><div class="rest-desc">Después de S3 este descanso es el más necesario del mes. Dormir 9 horas si podés. Proteína en cada comida del domingo.</div></div>
+    </div>
+  </div><!-- /week-s3 -->
+
+  <!-- ═══ SEMANA 4 -->
+  <div class="week-panel" id="week-s4">
+    <div class="nutrition-note" style="margin-bottom:1.5rem;">
+      <strong>🔄 Semana 4 — Deload obligatorio:</strong> Bajar el peso al 60-70% del máximo de S2. Subir las reps a 15-20. Foco en técnica perfecta y conexión mente-músculo. El cuerpo consolida las adaptaciones. RIR objetivo: 4-5 (muy cómodo).
+    </div>
+    <div class="workout-days-grid">
+
+      <div class="workout-day"><div class="wd-header"><div class="wd-day-num">LUN</div><div class="wd-info"><div class="wd-dayname">PECHO + HOMBROS + TRÍCEPS A</div><div class="wd-focus">Deload · 65% peso S2 · 15 reps</div><div class="wd-duration">⏱ 65 min</div></div></div><div class="wd-body">
+        <div class="phase"><div class="phase-title"><span>PROTOCOLO DELOAD</span></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press banca plano: 65% del peso de S2</div><div class="ex-note">Si en S2 ibas con 95kg → hoy 62kg. 3 series de 15 reps. Foco en sentir el pectoral en cada centímetro. Tempo 3-1-2.</div></div><div class="ex-params">3×15<br>Tempo 3-1-2<br>90 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Todos los ejercicios de pecho: 3×15 con 65% de S2</div><div class="ex-note">Sin drop sets, sin supersets. Técnica impecable. Usar este día para hacer fotos de progreso.</div></div><div class="ex-params">3×15<br>90 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Laterales y facepull: 3×20 muy liviano</div><div class="ex-note">El delta medio responde muy bien al volumen liviano en el deload.</div></div><div class="ex-params">3×20<br>60 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Tríceps: solo polea, 4×15-20</div><div class="ex-note">Sin press francés esta semana. Reducir estrés articular en codos.</div></div><div class="ex-params">4×15-20<br>60 s desc.</div></div>
+        </div>
+      </div></div>
+
+      <div class="workout-day rest-day"><div class="rest-icon">🏃</div><div class="rest-label">MAR — FUNCIONAL</div><div class="rest-desc">Clase del gimnasio. En semana de deload el funcional puede hacerse con más intensidad si querés.</div></div>
+
+      <div class="workout-day"><div class="wd-header"><div class="wd-day-num">MIÉ</div><div class="wd-info"><div class="wd-dayname">ESPALDA + BÍCEPS A</div><div class="wd-focus">Deload · Técnica perfecta</div><div class="wd-duration">⏱ 60 min</div></div></div><div class="wd-body">
+        <div class="phase"><div class="phase-title"><span>PROTOCOLO DELOAD</span></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Jalón agarre ancho: 65% del peso de S2, 3×12</div><div class="ex-note">Técnica perfecta. Foco total en la contracción del dorsal en cada rep.</div></div><div class="ex-params">3×12<br>90 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Todos los ejercicios de espalda: 65% de S2, 3×12</div></div><div class="ex-params">3×12<br>90 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Bíceps: curl 21s con peso muy liviano</div><div class="ex-note">Foco en el estiramiento máximo y la contracción perfecta. No importa el peso.</div></div><div class="ex-params">3×21<br>75 s desc.</div></div>
+        </div>
+      </div></div>
+
+      <div class="workout-day rest-day"><div class="rest-icon">🏃</div><div class="rest-label">JUE — FUNCIONAL</div><div class="rest-desc">Clase del gimnasio. Semana de deload — disfrutarlo sin presión.</div></div>
+
+      <div class="workout-day"><div class="wd-header"><div class="wd-day-num">VIE</div><div class="wd-info"><div class="wd-dayname">PECHO + HOMBROS + TRÍCEPS B</div><div class="wd-focus">Deload · 65% peso S2</div><div class="wd-duration">⏱ 65 min</div></div></div><div class="wd-body">
+        <div class="phase"><div class="phase-title"><span>PROTOCOLO DELOAD</span></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Todos los ejercicios: 65% de S2, 3 series de 12-15 reps</div><div class="ex-note">Sin técnicas de intensidad. Técnica perfecta, conexión mente-músculo.</div></div><div class="ex-params">3×12-15<br>90 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Press militar: 65% de S2, 3×12</div></div><div class="ex-params">3×12<br>90 s desc.</div></div>
+        </div>
+      </div></div>
+
+      <div class="workout-day"><div class="wd-header"><div class="wd-day-num">SÁB</div><div class="wd-info"><div class="wd-dayname">ESPALDA B + PIERNA</div><div class="wd-focus">Deload · Hip Thrust técnica pura</div><div class="wd-duration">⏱ 65 min</div></div></div><div class="wd-body">
+        <div class="phase"><div class="phase-title"><span>PROTOCOLO DELOAD</span></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Hip Thrust: 65% del peso de S2, 3×15</div><div class="ex-note">Sostener 3 seg arriba en cada rep. Conectar con el glúteo, no con el peso.</div></div><div class="ex-params">3×15<br>Tempo 1-3-1<br>90 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">RDL: 65% de S2, 3×12</div></div><div class="ex-params">3×12<br>90 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Curl isquios, abducción, pantorrilla: 3×15 liviano</div></div><div class="ex-params">3×15<br>60 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Espalda variante: 3×12 con 65% de S2</div></div><div class="ex-params">3×12<br>90 s desc.</div></div>
+          <div class="exercise"><div class="ex-bullet"></div><div><div class="ex-name">Stretching completo pierna + espalda baja</div><div class="ex-note">15-20 min. Isquios, glúteos, psoas, pantorrilla. Cerrar el mes cuidando el cuerpo.</div></div><div class="ex-params">20 min</div></div>
+        </div>
+      </div></div>
+
+      <div class="workout-day rest-day"><div class="rest-icon">💤</div><div class="rest-label">DOM — DESCANSO</div><div class="rest-desc">Fin del mesociclo. El lunes arrancás el próximo mes con nuevas cargas base. Evaluar progreso: fotos, cintura, cómo queda la ropa.</div></div>
+    </div>
+  </div><!-- /week-s4 -->
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ TIPS -->
+<section id="tips">
+  <div class="section-label">Claves del Éxito</div>
+  <h2 class="section-title">PROTOCOLOS</h2>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-icon">⚠️</div>
+      <div class="tip-title">TENDONES ROTULIANOS</div>
+      <div class="tip-body">Nunca hacer sentadilla libre con barra, leg press con ángulo profundo, ni saltos de impacto. Antes de cada sesión: 10 min de cinta o bici suave. Después: hielo 10 min si hay molestia. Colágeno + Vitamina C diario. Si hay dolor agudo: parar ese ejercicio y consultar al médico.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">💧</div>
+      <div class="tip-title">HIDRATACIÓN</div>
+      <div class="tip-body">Mínimo 3 litros/día en días de entrenamiento. 500ml antes de entrenar, 500ml durante, 500ml post-entreno. El agua ayuda al transporte de nutrientes y a la salud tendinosa. En verano agregar electrolitos (sodio, potasio).</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">😴</div>
+      <div class="tip-title">DESCANSO Y SUEÑO</div>
+      <div class="tip-body">7-9 horas de sueño es donde ocurre el 70% de la síntesis proteica. El músculo NO crece en el gym, crece en la cama. Establecer horario fijo. Evitar pantallas 1 hora antes de dormir. El cortisol elevado por mal sueño aumenta la grasa abdominal.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📈</div>
+      <div class="tip-title">PROGRESIÓN</div>
+      <div class="tip-body">Aumentar peso o repeticiones cada semana en al menos un ejercicio. Llevar registro en una libreta o app. Sin progresión no hay estímulo, sin estímulo no hay cambio. La clave para un físico atlético es la sobrecarga progresiva constante.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🐟</div>
+      <div class="tip-title">OMEGA-3 ANTIINFLAMATORIO</div>
+      <div class="tip-body">Pescado 3-4 veces por semana. Si no es posible, suplementar con 2-3g de omega-3 (EPA+DHA) diario. Es el antiinflamatorio natural más potente y clave para la recuperación de los tendones. También mejora la sensibilidad a la insulina.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🎯</div>
+      <div class="tip-title">OBJETIVO ESTÉTICO</div>
+      <div class="tip-body">Para un físico de modelo de revista: 15-16 kg de masa adiposa (vs. 21.77 actuales). Bajar 5-6 kg de grasa en 4-6 meses con déficit moderado + entrenamiento es realista y saludable. Preservar los 55 kg de músculo es la prioridad número 1.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">💊</div>
+      <div class="tip-title">SUPLEMENTACIÓN BÁSICA</div>
+      <div class="tip-body">Colágeno hidrolizado 10g/día + Vitamina C 500mg (mañana). Proteína en polvo si no llegás a los 200g de proteína desde la comida. Creatina monohidrato 5g/día (opcional, no causa retención notoria con buena hidratación). Multivitamínico de base.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📸</div>
+      <div class="tip-title">SEGUIMIENTO</div>
+      <div class="tip-body">Foto de frente, perfil y espalda cada 4 semanas (mismo horario, misma luz). Medición de cintura cada semana. El peso en balanza es secundario — los pliegues y la foto son la verdad. Volver a hacer la antropometría en 6 meses con la Lic. Goddard.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ FOOTER -->
+<footer>
+  <div class="logo">NL — ATHLETIC PLAN</div>
+  <p>
+    PLAN PERSONALIZADO · DICIEMBRE 2025<br>
+    NUTRICIÓN: LIC. SABRINA GODDARD · ISAK NIV.3<br>
+    MEDICIÓN: 08/07/2025 · EVALUACIÓN Nº 2
+  </p>
+</footer>
+
+<!-- BOTÓN DESCARGA -->
+<button class="print-btn" onclick="downloadHTML()">
+  <span>⬇</span> Descargar Plan
+</button>
+
+<script>
+  function downloadHTML() {
+    const html = document.documentElement.outerHTML;
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Nicolas-Plan-Atletico.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function showDay(dayId, btn) {
+    document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.meal-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('day-' + dayId).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function showWeek(weekId, btn) {
+    document.querySelectorAll('.week-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.week-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('week-' + weekId).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
